@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect } from "react";
-import { toast } from "./ui/use-toast";
+import { toast } from "../ui/use-toast";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export function UrlToaster() {
@@ -45,5 +45,5 @@ export function UrlToaster() {
       }, 1000);
     }
   }, [error, pathname, router, createQueryString]);
-  return <div>testing</div>;
+  return null;
 }

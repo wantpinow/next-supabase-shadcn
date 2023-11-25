@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import { font } from "@/styles/font";
 import { defaultMetadata } from "@/config/site";
 import { Toaster } from "@/components/ui/toaster";
-import { UrlToaster } from "@/components/url-toaster";
+import { UrlToaster } from "@/components/shared/url-toaster";
 
 export const metadata = defaultMetadata;
 
@@ -14,9 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        {children}
         <Toaster />
         <UrlToaster />
-        {children}
       </body>
     </html>
   );

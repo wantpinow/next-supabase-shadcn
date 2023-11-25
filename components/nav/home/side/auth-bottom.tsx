@@ -1,16 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { getUser, signOut } from "@/lib/supabase/server";
+import { getUser } from "@/lib/supabase/server";
 
 export async function HomeSidebarAuthBottom() {
   const user = await getUser();
 
   return (
     <div>
-      <form action={signOut}>
-        <Button variant="secondary" className="w-full">
-          {user?.email ?? "Not logged in"}
-        </Button>
-      </form>
+      <Button
+        variant="ghost"
+        className="w-full hover:bg-primary hover:text-primary-foreground"
+        size="sm"
+      >
+        {user?.email ?? "Not logged in"}
+      </Button>
     </div>
   );
 }

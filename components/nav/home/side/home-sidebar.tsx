@@ -8,7 +8,7 @@ export const HomeSidebar = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        "w-[300px] h-screen bg-primary text-primary-foreground px-4 py-6 flex flex-col justify-between",
+        "w-[260px] h-screen bg-primary text-primary-foreground px-4 py-6 flex flex-col justify-between",
         className
       )}
     >

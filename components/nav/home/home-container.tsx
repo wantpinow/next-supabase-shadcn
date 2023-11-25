@@ -8,7 +8,9 @@ export const HomeSidebarContainer = ({
   return (
     <div className="md:flex">
       <HomeSidebar />
-      <div className="grow bg-background">{children}</div>
+      <div className="grow bg-background max-w-[1400px] px-8 py-6">
+        {children}
+      </div>
     </div>
   );
 };

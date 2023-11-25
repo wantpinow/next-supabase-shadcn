@@ -61,12 +61,10 @@ export const signIn = async ({
   });
 
   if (error) {
-    console.log(error);
     return redirect("/login?error=Could not authenticate user");
   }
 
-  console.log("foo", error);
-  return redirect("/");
+  return redirect("/home");
 };
 
 export const signUp = async ({
@@ -94,7 +92,7 @@ export const signUp = async ({
     return redirect(`/login?error=${error.message}`);
   }
 
-  return redirect("/login?signup=success");
+  return redirect("/login?signup=success&success=Email sent");
 };
 
 export const getUser = async () => {
