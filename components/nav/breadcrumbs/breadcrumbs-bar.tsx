@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { NavLink } from "@/types/shared";
 import Icon from "../../ui/icon";
-import { LoginButton } from "../landing/login-button";
 import { Button } from "@/components/ui/button";
 import { signOut } from "@/lib/supabase/server";
 import {
@@ -11,6 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 export function Breadcrumb({
   link,
@@ -59,20 +59,23 @@ export function BreadcrumbsBar({ links }: { links: NavLink[] }) {
   return (
     <div className="flex justify-between items-center gap-4 border-b pb-3 border-primary/50">
       <Breadcrumbs links={links} />
-      <form action={signOut}>
+      <div className="flex gap-2">
+        <ThemeToggle />
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button size="icon" variant="default">
-                <Icon name="log-out" size={16} />
-              </Button>
+              <form action={signOut}>
+                <Button size="icon" variant="default">
+                  <Icon name="log-out" size={16} />
+                </Button>
+              </form>
             </TooltipTrigger>
-            <TooltipContent side="left">
+            <TooltipContent side="bottom">
               <p>Sign out</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-      </form>
+      </div>
     </div>
   );
 }

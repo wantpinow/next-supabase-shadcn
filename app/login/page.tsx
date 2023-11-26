@@ -13,8 +13,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Icon from "@/components/ui/icon";
+import { Metadata } from "next";
 
-export default function Login({
+export const metadata: Metadata = {
+  title: "Login",
+};
+
+export default function LoginPage({
   searchParams,
 }: {
   searchParams: { signup?: string };

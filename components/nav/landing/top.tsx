@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 import Link from "next/link";
 import { LoginButton } from "./login-button";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 export function LandingTopbar() {
   return (
@@ -23,13 +24,10 @@ export function LandingTopbar() {
         </div>
         <div className="flex gap-3">
           <LoginButton />
-          <Button
-            variant="outline"
-            size="icon"
-            className="hidden md:inline-flex"
-          >
+          <Button variant="ghost" size="icon" className="hidden md:inline-flex">
             <Icon name="github" size={24} />
           </Button>
+          <ThemeToggle />
         </div>
       </div>
     </div>

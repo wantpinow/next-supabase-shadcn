@@ -1,10 +1,21 @@
 import "@/styles/globals.css";
 import { font } from "@/styles/font";
-import { defaultMetadata } from "@/config/site";
 import { Toaster } from "@/components/ui/toaster";
 import { UrlToaster } from "@/components/shared/url-toaster";
+import { ThemeProvider } from "@/components/theme/theme-provider";
+import { Metadata } from "next";
 
-export const metadata = defaultMetadata;
+export const metadata: Metadata = {
+  title: {
+    default: "Next.js, Supabase, shadcn/ui",
+    template: `%s - NSS Starter`,
+  },
+  description: "A Next.js template with Supabase and shadcn/ui",
+  // themeColor: [
+  //   { media: "(prefers-color-scheme: light)", color: "white" },
+  //   { media: "(prefers-color-scheme: dark)", color: "dark" },
+  // ],
+};
 
 export default function RootLayout({
   children,
@@ -14,9 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
+        {/* <ThemeProvider attribute="class"> */}
         {children}
         <Toaster />
         <UrlToaster />
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );
