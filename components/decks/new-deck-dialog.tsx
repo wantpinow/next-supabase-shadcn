@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "../ui/use-toast";
+import { useRouter } from "next/navigation";
+import { useDecks } from "./decks-provider";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -32,6 +34,8 @@ const formSchema = z.object({
 
 export function NewDeckDialog() {
   const [open, setOpen] = useState(false);
+  const { addDeck } = useDecks();
+  const router = useRouter();
 
   const { toast } = useToast();
 
@@ -42,19 +46,22 @@ export function NewDeckDialog() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    toast({
-      title: "Deck created!",
-      description: "Your deck has been created.",
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const newDeck = await addDeck({
+      name: values.name,
+      user_id: "c5927144-537b-4404-8394-6f0de793e6f0",
     });
-    console.log(values);
+    if (!newDeck) {
+      return;
+    }
     setOpen(false);
+    router.push(`/deck/${newDeck.id}`);
   }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="sm" className="w-full" variant="secondary">
+        <Button variant="secondary" size="sm" className="w-full">
           New Deck
         </Button>
       </DialogTrigger>

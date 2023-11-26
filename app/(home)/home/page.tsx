@@ -1,18 +1,14 @@
 import { BreadcrumbsBar } from "@/components/nav/breadcrumbs/breadcrumbs-bar";
 import { getUser } from "@/lib/supabase/server";
 
-export default function Home() {
-  const user = getUser();
+export default async function Home() {
+  const user = await getUser();
   return (
-    <div>
+    <div className="space-y-4">
       <BreadcrumbsBar
         links={[
           {
-            label: "Home",
-            href: "/home",
-          },
-          {
-            label: "Dashboard",
+            label: "Decks",
             href: "/home",
           },
         ]}

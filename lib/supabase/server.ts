@@ -1,9 +1,16 @@
+import { Database } from "@/types/database";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-export const createClient = (cookieStore: ReturnType<typeof cookies>) => {
-  return createServerClient(
+export const createClient = (_cookieStore?: ReturnType<typeof cookies>) => {
+  let cookieStore: ReturnType<typeof cookies>;
+  if (!_cookieStore) {
+    cookieStore = cookies();
+  } else {
+    cookieStore = _cookieStore;
+  }
+  return createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {

@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:reset": "sh supabase/db_reset.sh local",
+    "supabase:types": "supabase gen types typescript --local > types/database.d.ts",
+    "supabase:test": "supabase db test"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",

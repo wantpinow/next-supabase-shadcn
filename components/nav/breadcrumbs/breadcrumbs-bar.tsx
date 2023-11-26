@@ -57,7 +57,7 @@ export function Breadcrumbs({ links }: { links: NavLink[] }) {
 
 export function BreadcrumbsBar({ links }: { links: NavLink[] }) {
   return (
-    <div className="flex justify-between items-center gap-4">
+    <div className="flex justify-between items-center gap-4 border-b pb-3 border-primary/50">
       <Breadcrumbs links={links} />
       <form action={signOut}>
         <TooltipProvider>
