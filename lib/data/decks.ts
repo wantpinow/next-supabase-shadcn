@@ -18,7 +18,6 @@ export async function selectDeckById({
   supabase: SupabaseClient<Database>;
   id: string;
 }) {
-  console.log("id", id);
   const { data, error } = await supabase
     .from("decks")
     .select("*")

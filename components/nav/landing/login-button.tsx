@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import Icon from "@/components/ui/icon";
 import { getUser } from "@/lib/supabase/server";
+import { LogInIcon } from "lucide-react";
 import Link from "next/link";
 
 export async function LoginButton() {
@@ -12,7 +12,7 @@ export async function LoginButton() {
         <Link href="/home">Dashboard</Link>
       ) : (
         <Link href="/login">
-          <Icon name="log-in" className="mr-2" size={16} />
+          <LogInIcon className="mr-2" size={16} />
           Login
         </Link>
       )}

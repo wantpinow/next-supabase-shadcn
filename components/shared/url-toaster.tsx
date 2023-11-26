@@ -44,6 +44,6 @@ export function UrlToaster() {
         router.push(pathname + "?" + createQueryString("success", null));
       }, 1000);
     }
-  }, [error, pathname, router, createQueryString]);
+  }, [error, success, pathname, router, createQueryString]);
   return null;
 }

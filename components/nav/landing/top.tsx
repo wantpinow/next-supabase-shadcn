@@ -1,17 +1,17 @@
 import { Button } from "@/components/ui/button";
-import Icon from "@/components/ui/icon";
 import Link from "next/link";
 import { LoginButton } from "./login-button";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { AirVentIcon, GithubIcon } from "lucide-react";
 
 export function LandingTopbar() {
   return (
-    <div className="bg-secondary">
+    <div className="bg-background">
       <div className="py-4 container flex justify-between items-center">
         <div className="flex gap-1 items-center">
           <Button variant="secondary" asChild>
             <Link href="/">
-              <Icon name="air-vent" className="mr-2" size={16} />
+              <AirVentIcon className="mr-2" size={16} />
               NSS Flashcards
             </Link>
           </Button>
@@ -25,7 +25,7 @@ export function LandingTopbar() {
         <div className="flex gap-3">
           <LoginButton />
           <Button variant="ghost" size="icon" className="hidden md:inline-flex">
-            <Icon name="github" size={24} />
+            <GithubIcon size={24} />
           </Button>
           <ThemeToggle />
         </div>

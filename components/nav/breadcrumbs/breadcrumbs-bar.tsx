@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { NavLink } from "@/types/shared";
-import Icon from "../../ui/icon";
 import { Button } from "@/components/ui/button";
 import { signOut } from "@/lib/supabase/server";
 import {
@@ -11,6 +10,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { Suspense } from "react";
+import { ChevronRightIcon, LogOutIcon } from "lucide-react";
 
 export function Breadcrumb({
   link,
@@ -27,32 +28,27 @@ export function Breadcrumb({
     );
   } else {
     return (
-      <Link href={link.href} className="text-foreground/60">
-        {link.label}
-      </Link>
+      <>
+        <Link href={link.href} className="text-foreground/60">
+          {link.label}
+        </Link>
+        <ChevronRightIcon className="mx-1 inline-block h-5 w-5 text-foreground/60" />
+      </>
     );
   }
 }
 
 export function Breadcrumbs({ links }: { links: NavLink[] }) {
-  let key = 0;
-  const crumbs = [];
-  for (let i = 0; i < links.length; i++) {
-    const link = links[i];
-    const active = i === links.length - 1;
-    crumbs.push(<Breadcrumb key={key++} link={link} active={active} />);
-    if (!active) {
-      crumbs.push(
-        <Icon
-          name="chevron-right"
-          key={key++}
-          className="mx-1 inline-block h-5 w-5 text-foreground/60"
-        />
-      );
-    }
-  }
-
-  return <div className="text-sm">{crumbs}</div>;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="text-sm">
+        {links.map((link, i) => {
+          const active = i === links.length - 1;
+          return <Breadcrumb key={i} link={link} active={active} />;
+        })}
+      </div>
+    </Suspense>
+  );
 }
 
 export function BreadcrumbsBar({ links }: { links: NavLink[] }) {
@@ -66,7 +62,7 @@ export function BreadcrumbsBar({ links }: { links: NavLink[] }) {
             <TooltipTrigger asChild>
               <form action={signOut}>
                 <Button size="icon" variant="default">
-                  <Icon name="log-out" size={16} />
+                  <LogOutIcon size={16} />
                 </Button>
               </form>
             </TooltipTrigger>

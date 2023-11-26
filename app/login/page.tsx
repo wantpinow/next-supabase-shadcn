@@ -12,8 +12,8 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Icon from "@/components/ui/icon";
 import { Metadata } from "next";
+import { MailIcon } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -45,7 +45,7 @@ export default function LoginPage({
       <Card className="w-full md:w-[500px] h-fit">
         {searchParams.signup === "success" ? (
           <CardHeader className="text-center py-12">
-            <Icon name="mail" size={72} className="text-primary mx-auto" />
+            <MailIcon size={72} className="text-primary mx-auto" />
             <CardTitle>Email Sent</CardTitle>
             <CardDescription>
               Check your inbox for a confirmation email.

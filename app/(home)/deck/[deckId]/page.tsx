@@ -2,17 +2,13 @@ import { DeckProvider } from "@/components/deck/deck-provider";
 import { BreadcrumbsBar } from "@/components/nav/breadcrumbs/breadcrumbs-bar";
 import { selectDeckById } from "@/lib/data/decks";
 import { createClient } from "@/lib/supabase/server";
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 
 type Props = {
   params: { deckId: string };
 };
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  console.log("metadata");
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
   const id = params.deckId;
 
@@ -34,8 +30,6 @@ export default async function DeckPage({
 }: {
   params: { deckId: string };
 }) {
-  console.log("page");
-
   const supabase = createClient();
   const { data: deck } = await selectDeckById({ supabase, id: params.deckId });
 
@@ -44,7 +38,6 @@ export default async function DeckPage({
   }
   return (
     <DeckProvider initialDeck={deck} initialCards={[]}>
-      slower
       <BreadcrumbsBar
         links={[
           { href: "/home", label: "Decks" },

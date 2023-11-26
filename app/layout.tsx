@@ -11,10 +11,6 @@ export const metadata: Metadata = {
     template: `%s - NSS Starter`,
   },
   description: "A Next.js template with Supabase and shadcn/ui",
-  // themeColor: [
-  //   { media: "(prefers-color-scheme: light)", color: "white" },
-  //   { media: "(prefers-color-scheme: dark)", color: "dark" },
-  // ],
 };
 
 export default function RootLayout({
@@ -25,11 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        {/* <ThemeProvider attribute="class"> */}
-        {children}
-        <Toaster />
-        <UrlToaster />
-        {/* </ThemeProvider> */}
+        <ThemeProvider attribute="class">
+          {children}
+          <Toaster />
+          <UrlToaster />
+        </ThemeProvider>
       </body>
     </html>
   );
