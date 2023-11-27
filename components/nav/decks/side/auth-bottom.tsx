@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { getUser } from "@/lib/supabase/server";
 
-export async function HomeSidebarAuthBottom() {
+export async function DecksSidebarAuthBottom() {
   const user = await getUser();
 
   return (

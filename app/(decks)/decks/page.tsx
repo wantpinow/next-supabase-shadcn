@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "All Flashcards",
 };
 
-export default async function Home() {
+export default async function DecksPage() {
   const user = await getUser();
   return (
     <div className="space-y-4">
@@ -14,7 +14,7 @@ export default async function Home() {
         links={[
           {
             label: "Decks",
-            href: "/home",
+            href: "/decks",
           },
         ]}
       />

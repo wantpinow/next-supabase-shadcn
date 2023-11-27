@@ -9,7 +9,7 @@ export async function LoginButton() {
   return (
     <Button variant="default" asChild>
       {user ? (
-        <Link href="/home">Dashboard</Link>
+        <Link href="/decks">Dashboard</Link>
       ) : (
         <Link href="/login">
           <LogInIcon className="mr-2" size={16} />

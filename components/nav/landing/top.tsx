@@ -23,11 +23,11 @@ export function LandingTopbar() {
           </Button>
         </div>
         <div className="flex gap-3">
-          <LoginButton />
           <Button variant="ghost" size="icon" className="hidden md:inline-flex">
             <GithubIcon size={24} />
           </Button>
           <ThemeToggle />
+          <LoginButton />
         </div>
       </div>
     </div>

@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { HomeSidebarDecksTop } from "./decks-top";
-import { HomeSidebarAuthBottom } from "./auth-bottom";
+import { DecksSidebarDecksTop } from "./decks-top";
+import { DecksSidebarAuthBottom } from "./auth-bottom";
 
-export const HomeSidebar = ({ className }: { className?: string }) => {
+export const DecksSidebar = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
@@ -12,8 +12,8 @@ export const HomeSidebar = ({ className }: { className?: string }) => {
         className
       )}
     >
-      <HomeSidebarDecksTop />
-      <HomeSidebarAuthBottom />
+      <DecksSidebarDecksTop />
+      <DecksSidebarAuthBottom />
     </div>
   );
 };

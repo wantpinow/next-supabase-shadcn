@@ -71,7 +71,7 @@ export const signIn = async ({
     return redirect("/login?error=Could not authenticate user");
   }
 
-  return redirect("/home");
+  return redirect("/decks");
 };
 
 export const signUp = async ({

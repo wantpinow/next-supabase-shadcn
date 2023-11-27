@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "./lib/supabase/middleware";
 
-export const protectedRoutes = ["/home"];
+//
+export const protectedRoutes = ["/decks"];
 
 export async function middleware(req: NextRequest) {
   // get the current user

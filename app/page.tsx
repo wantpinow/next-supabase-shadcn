@@ -1,7 +1,6 @@
 import { LandingTopbar } from "@/components/nav/landing/top";
-import Image from "next/image";
 
-export default function Home() {
+export default function Decks() {
   return (
     <div>
       <LandingTopbar />

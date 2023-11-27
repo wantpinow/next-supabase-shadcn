@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
-export function HomeSidebarDecksList() {
+export function DecksSidebarDecksList() {
   const { decks } = useDecks();
   const params = useParams();
 

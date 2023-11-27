@@ -1,9 +1,9 @@
 import { DecksProvider } from "@/components/decks/decks-provider";
-import { HomeSidebarContainer } from "@/components/nav/home/home-container";
+import { DecksSidebarContainer } from "@/components/nav/decks/decks-container";
 import { selectDecks } from "@/lib/data/decks";
 import { createClient } from "@/lib/supabase/server";
 
-export default async function HomeLayout({
+export default async function DecksLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ export default async function HomeLayout({
   const { data: decks } = await selectDecks({ supabase });
   return (
     <DecksProvider initialDecks={decks ?? []}>
-      <HomeSidebarContainer>{children}</HomeSidebarContainer>
+      <DecksSidebarContainer>{children}</DecksSidebarContainer>
     </DecksProvider>
   );
 }
