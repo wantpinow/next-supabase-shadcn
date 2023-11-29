@@ -1,5 +1,4 @@
 import { DeckProvider } from "@/components/deck/deck-provider";
-import { BreadcrumbsBar } from "@/components/nav/breadcrumbs/breadcrumbs-bar";
 import { selectDeckById } from "@/lib/data/decks";
 import { createClient } from "@/lib/supabase/server";
 import type { Metadata } from "next";
@@ -38,12 +37,12 @@ export default async function DeckPage({
   }
   return (
     <DeckProvider initialDeck={deck} initialCards={[]}>
-      <BreadcrumbsBar
+      {/* <BreadcrumbsBar
         links={[
           { href: "/decks", label: "Decks" },
           { href: `/deck/${deck.id}`, label: deck.name },
         ]}
-      />
+      /> */}
     </DeckProvider>
   );
 }

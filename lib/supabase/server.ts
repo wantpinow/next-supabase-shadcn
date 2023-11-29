@@ -63,6 +63,9 @@ export const signIn = async ({
 }) => {
   "use server";
 
+  redirectTo = process.env.HOST + redirectTo;
+  errorRedirectTo = process.env.HOST + errorRedirectTo;
+
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 

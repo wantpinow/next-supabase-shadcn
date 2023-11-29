@@ -3,13 +3,7 @@
 import { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import { Input } from "@/components/ui/input";
 
-export function OtpInput({
-  n = 6,
-  onSubmit,
-}: {
-  n: number;
-  onSubmit: (otp: string) => Promise<void>;
-}) {
+export function OtpInput({ n = 6 }: { n: number }) {
   const [otpValues, setOtpValues] = useState<string[]>(Array(n).fill(""));
   const inputRefs = useRef<Array<HTMLInputElement | null>>(Array(n).fill(null));
 
@@ -24,7 +18,7 @@ export function OtpInput({
     // log the OTP values when they are all filled
     if (otpValues.every((value) => value !== "")) {
       const otp = otpValues.join("");
-      onSubmit(otp);
+      console.log(otp);
     }
   }, [otpValues]);
 

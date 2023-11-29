@@ -1,9 +1,9 @@
+"use client";
+import { useAuth } from "@/components/shared/auth-provider";
 import { Button } from "@/components/ui/button";
-import { getUser } from "@/lib/supabase/server";
 
-export async function DecksSidebarAuthBottom() {
-  const user = await getUser();
-
+export function DecksSidebarAuthBottom() {
+  const { user } = useAuth();
   return (
     <div>
       <Button

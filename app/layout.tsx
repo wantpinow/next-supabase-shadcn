@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Metadata } from "next";
 import { AuthProvider } from "@/components/shared/auth-provider";
 import { createClient } from "@/lib/supabase/server";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: {
@@ -27,7 +28,7 @@ export default async function RootLayout({
   const accessToken = session?.access_token ?? null;
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body className={cn(font.className)}>
         <AuthProvider accessToken={accessToken}>
           <ThemeProvider attribute="class">
             {children}

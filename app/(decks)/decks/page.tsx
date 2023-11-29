@@ -1,4 +1,3 @@
-import { BreadcrumbsBar } from "@/components/nav/breadcrumbs/breadcrumbs-bar";
 import { getUser } from "@/lib/supabase/server";
 import { Metadata } from "next";
 
@@ -10,7 +9,7 @@ export default async function DecksPage() {
   const user = await getUser();
   return (
     <div className="space-y-4">
-      <BreadcrumbsBar
+      {/* <BreadcrumbsBar
         links={[
           {
             label: "Flashcards",
@@ -21,7 +20,7 @@ export default async function DecksPage() {
             href: "/decks",
           },
         ]}
-      />
+      /> */}
     </div>
   );
 }
