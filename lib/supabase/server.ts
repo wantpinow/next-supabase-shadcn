@@ -73,7 +73,7 @@ export const signIn = async ({
 
   if (error) {
     // parse any search params from errorRedirectTo
-    const url = new URL(errorRedirectTo, "http://localhost");
+    const url = new URL(errorRedirectTo);
     const searchParams = new URLSearchParams(url.search);
     // add error message to search params
     searchParams.set("error", error.message);
@@ -82,7 +82,7 @@ export const signIn = async ({
   }
 
   // parse any search params from redirectTo
-  const url = new URL(redirectTo, "http://localhost");
+  const url = new URL(redirectTo);
   const searchParams = new URLSearchParams(url.search);
   // add success message to search params
   searchParams.set("success", "Signed in");
