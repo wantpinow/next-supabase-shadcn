@@ -53,11 +53,13 @@ export const signOut = async () => {
 export const signIn = async ({
   email,
   password,
-  redirectTo,
+  redirectTo = "/decks",
+  errorRedirectTo = "/login",
 }: {
   email: string;
   password: string;
   redirectTo?: string;
+  errorRedirectTo?: string;
 }) => {
   "use server";
 
@@ -70,10 +72,23 @@ export const signIn = async ({
   });
 
   if (error) {
-    return redirect("/login?error=Could not authenticate user");
+    // parse any search params from errorRedirectTo
+    const url = new URL(errorRedirectTo, "http://localhost");
+    const searchParams = new URLSearchParams(url.search);
+    // add error message to search params
+    searchParams.set("error", error.message);
+    errorRedirectTo = `${url.pathname}?${searchParams.toString()}`;
+    return redirect(errorRedirectTo);
   }
 
-  return redirect(`${redirectTo ?? "/decks"}?success=Signed in`);
+  // parse any search params from redirectTo
+  const url = new URL(redirectTo, "http://localhost");
+  const searchParams = new URLSearchParams(url.search);
+  // add success message to search params
+  searchParams.set("success", "Signed in");
+  redirectTo = `${url.pathname}?${searchParams.toString()}`;
+
+  return redirect(redirectTo);
 };
 
 export const signUp = async ({
@@ -101,7 +116,7 @@ export const signUp = async ({
     return redirect(`/login?error=${error.message}`);
   }
 
-  return redirect("/login?signup=success&success=Email sent");
+  return redirect("/login?signup=success&success=Email sent, check your inbox");
 };
 
 export const getUser = async () => {
