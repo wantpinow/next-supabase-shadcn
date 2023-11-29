@@ -27,9 +27,9 @@ export const AuthProvider = (props: AuthProviderProps) => {
   const router = useRouter();
   const { accessToken, ...rest } = props;
 
-  const supabase = createClient();
-
   useEffect(() => {
+    const supabase = createClient();
+
     // get the latest session from supabase
     async function getActiveSession() {
       const {

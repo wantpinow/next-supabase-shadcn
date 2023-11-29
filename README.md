@@ -1,40 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# next-supabase-shadcn
 
-## Getting Started
+A fullstack template using Next.js, Supabase, Tailwind CSS (shadcn/ui), and TypeScript.
 
-First, run the development server:
+## Features
+
+- 🚀 [Next.js 14](https://nextjs.org/docs) with `/app` router and SSR
+- 🔐 [Supabase](https://supabase.io/docs) for auth and database
+- 🎨 [Tailwind CSS](https://tailwindcss.com/docs) with [shadcn/ui](https://ui.shadcn.com/docs)
+- 📘 [TypeScript](https://www.typescriptlang.org/docs) support throughout, including auto-generated types for Supabase tables
+- ✉️ Email signup and login using PKCE flow with [@supabase/ssr](https://supabase.com/docs/guides/auth/server-side/email-based-auth-with-pkce-flow-for-ssr)
+- 🌗 Dark/light mode using [next-themes](https://github.com/pacocoursey/next-themes)
+- 🔒 Protected routes via Next.js [middleware](https://nextjs.org/docs/app/building-your-application/routing/middleware)
+- 🛡️ Protected CRUD operations via [row level security](https://supabase.com/docs/guides/auth/row-level-security)
+- 🍞 Toast notifications
+- 📱 Responsive layouts
+- 📄 Example pages with metadata and React context providers
+
+_Coming soon (please make a PR if you want to contribute)..._
+
+- 📚 `/docs` pages
+- 🔑 OAuth logins
+- 🧪 Database tests for RLS policies
+
+## Setup
+
+Clone the repo, then install all dependencies using `yarn`:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start a local supabase instance. This will download the latest docker image and start a local instance of supabase.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn supabase start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Create a `.env.local` file with the enviroment variables defined in `.env.local.example`. The `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` defined in `.env.local.example` should work for all local supabase instances. If you wish to use a remote supabase instance, the public Supabase URL and API key can be found in your dashboard.
 
-## Learn More
+## Devlopment
 
-To learn more about Next.js, take a look at the following resources:
+Start the local next.js server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+If you wish to reset your local supabase database, run the command below. This will run any migrations in `supabase/migrations` and reset the database to the initial state defined in `supabase/seed.sql`.
 
-## Deploy on Vercel
+```bash
+yarn supabase db reset
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Note that signups will require email confirmation by default. If you are running Supabase locally, you can find an [Inbucket](https://inbucket.org/) server at http://localhost:54324/ that will store all emails sent by your local Supabase instance.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
+<!--
 ## Supabase Cloud Setup
 
-- Add the the appropriate /auth/callback to additonal redirect URLs in the Supabase dashboard
+- Add the the appropriate /auth/callback to additonal redirect URLs in the Supabase dashboard -->

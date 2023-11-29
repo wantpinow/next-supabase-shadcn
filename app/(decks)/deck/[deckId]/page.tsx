@@ -37,12 +37,7 @@ export default async function DeckPage({
   }
   return (
     <DeckProvider initialDeck={deck} initialCards={[]}>
-      {/* <BreadcrumbsBar
-        links={[
-          { href: "/decks", label: "Decks" },
-          { href: `/deck/${deck.id}`, label: deck.name },
-        ]}
-      /> */}
+      <div>{deck.name}</div>
     </DeckProvider>
   );
 }
