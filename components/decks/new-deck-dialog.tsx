@@ -25,6 +25,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
 import { useDecks } from "./decks-provider";
+import { useAuth } from "../shared/auth-provider";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -36,6 +37,7 @@ export function NewDeckDialog() {
   const [open, setOpen] = useState(false);
   const { addDeck } = useDecks();
   const router = useRouter();
+  const { user } = useAuth();
 
   const { toast } = useToast();
 
@@ -47,9 +49,12 @@ export function NewDeckDialog() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!user) {
+      return;
+    }
     const newDeck = await addDeck({
       name: values.name,
-      user_id: "c5927144-537b-4404-8394-6f0de793e6f0",
+      user_id: user.id,
     });
     if (!newDeck) {
       return;

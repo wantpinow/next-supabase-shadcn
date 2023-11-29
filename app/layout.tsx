@@ -4,6 +4,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { UrlToaster } from "@/components/shared/url-toaster";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Metadata } from "next";
+import { AuthProvider } from "@/components/shared/auth-provider";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
   title: {
@@ -13,19 +15,26 @@ export const metadata: Metadata = {
   description: "A Next.js template with Supabase and shadcn/ui",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const supabase = createClient();
+  const {
+    data: { session: session },
+  } = await supabase.auth.getSession();
+  const accessToken = session?.access_token ?? null;
   return (
     <html lang="en">
       <body className={font.className}>
-        <ThemeProvider attribute="class">
-          {children}
-          <Toaster />
-          <UrlToaster />
-        </ThemeProvider>
+        <AuthProvider accessToken={accessToken}>
+          <ThemeProvider attribute="class">
+            {children}
+            <Toaster />
+            <UrlToaster />
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
