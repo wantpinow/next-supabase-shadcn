@@ -53,9 +53,11 @@ export const signOut = async () => {
 export const signIn = async ({
   email,
   password,
+  redirectTo,
 }: {
   email: string;
   password: string;
+  redirectTo?: string;
 }) => {
   "use server";
 
@@ -71,7 +73,7 @@ export const signIn = async ({
     return redirect("/login?error=Could not authenticate user");
   }
 
-  return redirect("/decks");
+  return redirect(`${redirectTo ?? "/decks"}?success=Signed in`);
 };
 
 export const signUp = async ({

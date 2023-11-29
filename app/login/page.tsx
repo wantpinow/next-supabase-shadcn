@@ -22,13 +22,14 @@ export const metadata: Metadata = {
 export default function LoginPage({
   searchParams,
 }: {
-  searchParams: { signup?: string };
+  searchParams: { signup?: string; redirect?: string };
 }) {
   const signInSubmit = async (formData: FormData) => {
     "use server";
     return signIn({
       email: formData.get("email") as string,
       password: formData.get("password") as string,
+      redirectTo: searchParams.redirect,
     });
   };
 

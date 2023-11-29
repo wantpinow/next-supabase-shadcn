@@ -1,49 +1,29 @@
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { toast } from "../ui/use-toast";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParamsState } from "@/lib/use-search-params-state";
 
 export function UrlToaster() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const error = searchParams.get("error");
-  const success = searchParams.get("success");
-
-  const createQueryString = useCallback(
-    (name: string, value: string | null) => {
-      const params = new URLSearchParams(searchParams);
-      if (value === null) {
-        params.delete(name);
-        return params.toString();
-      } else {
-        params.set(name, value);
-      }
-      return params.toString();
-    },
-    [searchParams]
-  );
+  const [errorState, setErrorState] = useSearchParamsState("error");
+  const [successState, setSuccessState] = useSearchParamsState("success");
 
   useEffect(() => {
-    if (error) {
+    if (errorState) {
       toast({
         title: "An error occured",
-        description: error,
+        description: errorState,
         variant: "destructive",
       });
-      setTimeout(() => {
-        router.push(pathname + "?" + createQueryString("error", null));
-      }, 1000);
+      setErrorState(undefined);
     }
-    if (success) {
+    if (successState) {
       toast({
-        title: success,
+        title: "Success!",
+        description: successState,
       });
-      setTimeout(() => {
-        router.push(pathname + "?" + createQueryString("success", null));
-      }, 1000);
+      setSuccessState(undefined);
     }
-  }, [error, success, pathname, router, createQueryString]);
+  }, [errorState, successState, setErrorState, setSuccessState]);
   return null;
 }

@@ -1,8 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "./lib/supabase/middleware";
 
-//
-export const protectedRoutes = ["/decks"];
+// routes that require the user to be logged in
+export const protectedRoutes = ["/decks", "/deck/**"];
+function wildcardToRegex(wildcard: string) {
+  const w = wildcard.replace(/[.+^${}()|[\]\\]/g, "\\$&"); // regexp escape
+  const re = new RegExp(`^${w.replace(/\*/g, ".*").replace(/\?/g, ".")}$`, "i");
+  return re;
+}
+export const protectedRoutesRegex = protectedRoutes.map(wildcardToRegex);
 
 export async function middleware(req: NextRequest) {
   // get the current user
@@ -12,8 +18,10 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getUser();
 
   // redirect to login if user is not logged in and the route is protected
-  if (!user && protectedRoutes.includes(req.nextUrl.pathname)) {
-    return NextResponse.redirect(`${req.nextUrl.origin}/login`);
+  if (!user && protectedRoutesRegex.some((r) => r.test(req.nextUrl.pathname))) {
+    return NextResponse.redirect(
+      `${req.nextUrl.origin}/login?error=Unauthorized&redirect=${req.nextUrl.pathname}`
+    );
   }
 
   return response;

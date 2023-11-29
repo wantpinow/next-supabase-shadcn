@@ -13,7 +13,11 @@ export default async function DecksPage() {
       <BreadcrumbsBar
         links={[
           {
-            label: "Decks",
+            label: "Flashcards",
+            href: "/decks",
+          },
+          {
+            label: "All Decks",
             href: "/decks",
           },
         ]}

@@ -56,8 +56,17 @@ export function BreadcrumbsBar({ links }: { links: NavLink[] }) {
     <div className="flex justify-between items-center gap-4 border-b pb-3 border-primary/50">
       <Breadcrumbs links={links} />
       <div className="flex gap-2">
-        <ThemeToggle />
         <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div>
+                <ThemeToggle />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent side="bottom">
+              <p>Dark mode</p>
+            </TooltipContent>
+          </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
               <form action={signOut}>
