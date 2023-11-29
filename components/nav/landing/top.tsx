@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { LoginButton } from "./login-button";
+import { LoginButton } from "@/components/nav/landing/login-button";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { AirVentIcon, GithubIcon } from "lucide-react";
 

@@ -1,7 +1,7 @@
 import { NewDeckDialog } from "@/components/decks/new-deck-dialog";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { DecksSidebarDecksList } from "./decks-list";
+import { DecksSidebarDecksList } from "@/components/nav/decks/side/decks-list";
 import { Separator } from "@/components/ui/separator";
 import { AirVentIcon } from "lucide-react";
 

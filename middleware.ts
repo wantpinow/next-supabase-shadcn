@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "./lib/supabase/middleware";
+import { createClient } from "@/lib/supabase/middleware";
 
 // routes that require the user to be logged in
 export const protectedRoutes = ["/decks", "/deck/**"];

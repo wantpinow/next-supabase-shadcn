@@ -24,7 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
-import { useDecks } from "./decks-provider";
+import { useDecks } from "@/components/decks/decks-provider";
 import { useAuth } from "../shared/auth-provider";
 
 const formSchema = z.object({

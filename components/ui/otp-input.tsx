@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, ChangeEvent, KeyboardEvent } from "react";
-import { Input } from "./input";
+import { Input } from "@/components/ui/input";
 
 export function OtpInput({
   n = 6,
