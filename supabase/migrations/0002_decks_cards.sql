@@ -31,4 +31,4 @@ ALTER TABLE
     PUBLIC .cards ENABLE ROW LEVEL SECURITY;
 
 -- allow users to create, read, update, and delete their own decks and cards
-CREATE POLICY decks_own_crud ON PUBLIC .decks FOR ALL TO PUBLIC WITH CHECK (auth.uid() = user_id);
+CREATE POLICY decks_own_crud ON PUBLIC .decks FOR ALL TO authenticated USING (auth.uid() = user_id);

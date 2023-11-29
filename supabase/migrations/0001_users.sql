@@ -57,4 +57,4 @@ ALTER TABLE
 -- allow users to see their own data
 CREATE POLICY select_users ON PUBLIC .users FOR
 SELECT
-    TO PUBLIC USING (auth.uid() = id);
+    TO authenticated USING (auth.uid() = id);
